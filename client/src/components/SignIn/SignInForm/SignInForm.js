@@ -5,6 +5,7 @@ class SignInForm extends Component {
     render() {
         return (
             <div>
+                <h3>Returning User? Sign in Here:</h3>
                 <form>
                     <label>E-Mail:</label>
                     <input id="returnEmail"></input>
