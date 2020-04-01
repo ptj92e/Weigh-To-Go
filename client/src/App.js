@@ -4,6 +4,8 @@ import './App.css';
 import SignIn from "./components/SignIn/SignIn";
 import NewUser from "./components/NewUser/NewUser";
 import Home from "./components/Home/Home";
+import Meals from "./components/Meal/Meal";
+import Workouts from "./components/Workout/Workout";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route exact path="/" component={SignIn} />
           <Route exact path="/newUser" component={NewUser} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/workouts" component={Workouts} />
+          <Route exact path="/meals" component={Meals} />
         </div>
       </Router>
     </div>
