@@ -20,7 +20,7 @@ var connection = mysql.createConnection({
     host: "localhost",
     port: 3001,
     user: "root",
-    password: "hockey_rules",
+    password: "Trombone-9",
     database: "weighToGo_db"
 });
 
