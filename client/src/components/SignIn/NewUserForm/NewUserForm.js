@@ -6,7 +6,7 @@ class NewUserForm extends Component {
     render() {
         return (
             <div>
-                <h3>If you are a new use, sign up here:</h3>
+                <h3>If you are a new user, sign up here:</h3>
                 <form>
                     <label>Name</label>
                     <input type="text" id="newName"></input>
