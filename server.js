@@ -4,6 +4,7 @@ const mysql = require("mysql");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+require('dotenv').config();
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -20,7 +21,7 @@ var connection = mysql.createConnection({
     host: "localhost",
     port: 3001,
     user: "root",
-    password: "Trombone-9",
+    password: process.env.SQL_PASS,
     database: "weighToGo_db"
 });
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NewUserButton from "../NewUserButton/NewUserButton";
+import NewUserButton from "../../NewUser/NewUserButton/NewUserButton";
 import "./NewUserForm.css";
 
 class NewUserForm extends Component { 
