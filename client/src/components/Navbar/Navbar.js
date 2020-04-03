@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 function Navbar() {
 
     return (
-        <header class="navbar">
-            <section class="navbar-section">
-                <a class="navbar-brand mr-2"><Link to="/home">Weigh To Go!</Link></a>
-                <a href="..." class="btn btn-link"><Link to="/workouts">Workouts</Link></a>
-                <a href="..." class="btn btn-link"><Link to="/meals">Meals</Link></a>
+        <header className="navbar">
+            <section className="navbar-section">
+                <Link to="/home">Weigh To Go!</Link>
+                <Link to="/workouts">Workouts</Link>
+                <Link to="/meals">Meals</Link>
+                <Link to="/account">Manage Account</Link>
             </section>
         </header>
     )

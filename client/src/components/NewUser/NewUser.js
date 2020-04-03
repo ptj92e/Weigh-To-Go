@@ -1,9 +1,10 @@
 import React from "react";
+import NewUserInfo from "./NewUserInfo/NewUserInfo";
 
 function NewUser() {
     return (
         <div>
-            <h1>Hello New User</h1>
+            <NewUserInfo />
         </div>
     );
 };
