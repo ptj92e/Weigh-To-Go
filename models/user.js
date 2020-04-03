@@ -31,10 +31,10 @@ module.exports = function(sequelize, DataTypes){
     });
 
     User.associate = function(models){
-        Author.hasMany(models.Workouts,{
+        User.hasMany(models.Workouts,{
             onDelete:"cascade"
         });
-        Author.hasMany(models.Meals,{
+        User.hasMany(models.Meals,{
             onDelete:"cascade"
         });
     };
