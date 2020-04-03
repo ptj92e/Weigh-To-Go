@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function NewUserButton() {
     return (
-        <button><Link to="/newUser">Sign Up</Link></button>
+        <button><Link to="/sign_up">Sign Up</Link></button>
     );
 };
 
