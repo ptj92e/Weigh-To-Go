@@ -1,7 +1,7 @@
 import React from "react";
-import SignInForm from "./SignInForm/SignInForm";
-import SignInTitle from "./SignInTitle/SignInTitle";
-import NewUserForm from "./NewUserForm/NewUserForm";
+import SignInForm from "../components/SignInForm/SignInForm";
+import SignInTitle from "../components/SignInTitle/SignInTitle";
+import NewUserForm from "../components/NewUserForm/NewUserForm";
 
 function SignIn() {
     return(
