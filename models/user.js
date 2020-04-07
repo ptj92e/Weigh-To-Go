@@ -1,28 +1,32 @@
 module.exports = function(sequelize, DataTypes){
     const User = sequelize.define("User", {
-        first_name: {
+        name: {
             type:DataTypes.STRING,
             allowNull: false
         },
-        last_name: {
+        email: {
+            type:DataTypes.STRING,
+            allowNull: false
+        },
+        password: {
             type:DataTypes.STRING,
             allowNull: false
         },
         age: {
             type:DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         height: {
             type:DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         weight:{
             type:DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         gender: {
             type:DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
             },
         goal_weight: {
             type: DataTypes.INTEGER,

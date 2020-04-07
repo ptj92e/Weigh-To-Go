@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useContext } from "react";
-import { 
-    CREATE_NEWUSER, 
-    UPDATE_NEWUSER 
+import {
+    CREATE_NEWUSER,
+    UPDATE_NEWUSER
 } from "./actions";
 
 const UserContext = createContext();
@@ -14,30 +14,26 @@ const reducer = (state, action) => {
                 ...state,
                 newUser: action.newUser
             };
-        case UPDATE_NEWUSER: 
+        case UPDATE_NEWUSER:
             return {
                 ...state,
                 newUserInfo: action.updateNewUser
             };
-        default: 
+        default:
             return state;
     };
 };
 
 const UserProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
-        newUser: {
-            name: "",
-            email: "",
-            password: ""
-        },
-        newUserInfo: {
-            age: "",
-            gender: "",
-            height: "",
-            currentWeight: "",
-            goalWeight: ""
-        }
+        name: "",
+        email: "",
+        password: "",
+        age: "",
+        gender: "",
+        height: "",
+        currentWeight: "",
+        goalWeight: ""
     });
 
     return <Provider value={[state, dispatch]} {...props} />;
