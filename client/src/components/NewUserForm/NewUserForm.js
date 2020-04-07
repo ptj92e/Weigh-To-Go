@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
 import { useUserContext } from "../../utils/GlobalState";
 import { CREATE_NEWUSER } from "../../utils/actions";
 import "./NewUserForm.css";
+import API from "../../utils/API";
 
 function NewUserForm() {
     const nameRef = useRef();
@@ -10,17 +10,23 @@ function NewUserForm() {
     const newPassRef = useRef();
     const confirmPassRef = useRef();
     const [state, dispatch] = useUserContext();
-    
+
     const handleSubmit = e => {
         e.preventDefault();
         if (newPassRef.current.value !== confirmPassRef.current.value) {
-            console.log("They don't match");
+            alert("The two password fields should match.");
         } else {
-            // dispatch({ 
-            //     type: CREATE_NEWUSER,
-    
-            // })
-            console.log("yay");
+            API.createUser({
+                name: nameRef.current.value,
+                email: emailRef.current.value,
+                password: newPassRef.current.value
+            }).then(result => {
+                dispatch({
+                    type: CREATE_NEWUSER,
+                    newUser: result.data
+                }).catch(err => console.log(err));
+            });
+            // window.location.href = "/sign_up";
         };
     };
 
@@ -58,7 +64,7 @@ function NewUserForm() {
                 />
                 <button type="submit">
                     {/* <Link to="/sign_up">Sign Up</Link> */}
-                Sign Up</button>
+                    Sign Up</button>
             </form>
         </div>
     );

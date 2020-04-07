@@ -1,12 +1,11 @@
-require("dotenv").config();
 const express = require("express");
 
-const mysql = require("mysql");
 const routes = require("./routes");
 const db = require("./models");
 const app = express();
 const PORT = process.env.PORT || 3001;
-require('dotenv').config();
+
+app.use(routes);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
