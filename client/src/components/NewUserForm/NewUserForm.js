@@ -32,37 +32,41 @@ function NewUserForm() {
     };
 
     return (
-        <div>
+        <div id="newUserForm">
             <h3>If you are a new user, sign up here:</h3>
             <form onSubmit={handleSubmit}>
-                <label>Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Full Name"
-                    required ref={nameRef}
-                />
-                <label>E-Mail</label>
-                <input
-                    type="text"
-                    name="email"
-                    placeholder="E-Mail"
-                    required ref={emailRef}
-                />
-                <label>Password</label>
-                <input
-                    type="password"
-                    name="newPass"
-                    placeholder="New Password"
-                    required ref={newPassRef}
-                />
-                <label>Confirm Password</label>
-                <input
-                    type="password"
-                    name="confirmPass"
-                    placeholder="Confirm Password"
-                    required ref={confirmPassRef}
-                />
+                <div className="column col-12">
+                    <label>Name:</label>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Full Name"
+                        required ref={nameRef}
+                    />
+                    <label>E-Mail:</label>
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder="E-Mail"
+                        required ref={emailRef}
+                    />
+                </div>
+                <div className="column col-12">
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        name="newPass"
+                        placeholder="New Password"
+                        required ref={newPassRef}
+                    />
+                    <label>Confirm:</label>
+                    <input
+                        type="password"
+                        name="confirmPass"
+                        placeholder="Confirm Password"
+                        required ref={confirmPassRef}
+                    />
+                </div>
                 <button type="submit">
                     {/* <Link to="/sign_up">Sign Up</Link> */}
                     Sign Up</button>

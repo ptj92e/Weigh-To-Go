@@ -3,10 +3,9 @@ import "./SignInTitle.css";
 
 function SignInTitle() {
     return(
-        <div>
-            <h3>Welcome to</h3>
+        <div id="signInTitle">
             <h1>Weigh To Go!</h1>
-            <p>A fitness app designed to help you reach your fitness goals.</p>
+            <p>You just took your first step in your firness journey! We are an app designed to help you keep track of your workouts as well as track your eating habits help you reach your goals!</p>
         </div>
     )
 }
