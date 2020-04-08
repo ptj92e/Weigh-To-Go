@@ -1,0 +1,21 @@
+#newUserForm {
+    font-family: 'Blinker', sans-serif;
+    width: 40%;
+    padding: 20px;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+    background-color: rgba(193, 200, 228, .9);
+    border-radius: 50px;
+}
+#newUserForm label {
+    margin: 5px;
+    margin-bottom: 10px;
+}
+#newUserForm input {
+    margin: 5px;
+    margin-bottom: 10px;
+}
+#newUserForm button {
+    margin: 10px;
+}

@@ -1,0 +1,17 @@
+#signInTitle {
+    font-family: 'Blinker', sans-serif;
+    text-align: center;
+    margin-top: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    width: 75%;
+    background-color: rgba(193,200,228, .9);
+    border-radius: 50px;
+}
+#signInTitle h1 {
+    font-size: 60px;
+}
+#signInTitle p {
+    font-size: 25px;
+}

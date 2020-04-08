@@ -1,22 +1,22 @@
-import React, { Component } from "react";
+import React, { useRef } from "react";
 import "./SignInForm.css";
-import SignInButton from "../SignInButton/SignInButton";
+import { Link } from "react-router-dom";
 
-class SignInForm extends Component {
-    render() {
-        return (
-            <div>
-                <h3>Returning User? Sign in Here:</h3>
-                <form>
+function SignInForm() {
+    return (
+        <div id="signIn">
+            <h3>Returning User? Sign in Here:</h3>
+            <form>
+                <div className="column col-12">
                     <label>E-Mail:</label>
                     <input id="returnEmail"></input>
-                    <label>Password</label>
+                    <label>Password:</label>
                     <input id="returnPassword"></input>
-                    <SignInButton />
-                </form>
-            </div>
-        )
-    }
+                </div>
+                <button><Link to="/home">Sign In</Link></button>
+            </form>
+        </div>
+    )
 }
 
 export default SignInForm;
