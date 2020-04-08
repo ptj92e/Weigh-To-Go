@@ -13,6 +13,7 @@ function NewUserForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
+        console.log("yay");
         if (newPassRef.current.value !== confirmPassRef.current.value) {
             alert("The two password fields should match.");
         } else {
