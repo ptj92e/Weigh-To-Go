@@ -15,10 +15,11 @@ module.exports = {
     "dialect": "mysql"
 },
 "production": {
-    "username": "z8510a79gw1p6qe3",
-    "password": "txtpcfgqpoths207",
-    "database": "v319rdteak9b87qc",
-    "host": "kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "use_env_variable": process.env.JAWSDB_URL, 
+    "username": process.env.USERNAME,
+    "password": process.env.PASSWORD,
+    "database": process.env.DATABASE,
+    "host": process.env.HOST,
     "dialect": "mysql",
     "operatorsAliases": false,
   }
