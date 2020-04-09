@@ -1,21 +1,29 @@
 #signIn {
     font-family: 'Blinker', sans-serif;
-    width: 40%;
+    width: 100%;
     padding: 20px;
     margin: auto;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     text-align: center;
-    background-color: rgba(193, 200, 228, .9);
+    /* background-color: rgba(193, 200, 228, .9); */
     border-radius: 50px;
 }
 #signIn label {
     margin: 5px;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 #signIn input {
     margin: 5px;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 #signIn button {
+    background-color: #6606d0;
+    padding: 10px;
+    border-radius: 15px;
     margin: 10px;
+}
+#signIn button a {
+    color: white;
 }

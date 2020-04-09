@@ -33,7 +33,7 @@ function NewUserForm() {
 
     return (
         <div id="newUserForm">
-            <h3>If you are a new user, sign up here:</h3>
+            <h3>Don't have an account?</h3>
             <form onSubmit={handleSubmit}>
                 <div className="column col-12">
                     <label>Name:</label>

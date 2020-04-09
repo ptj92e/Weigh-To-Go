@@ -1,21 +1,25 @@
 #newUserForm {
     font-family: 'Blinker', sans-serif;
-    width: 40%;
+    width: 100%;
     padding: 20px;
     margin: auto;
-    margin-top: 20px;
     text-align: center;
-    background-color: rgba(193, 200, 228, .9);
     border-radius: 50px;
 }
 #newUserForm label {
     margin: 5px;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 #newUserForm input {
     margin: 5px;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 #newUserForm button {
+    background-color: #6606d0;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
     margin: 10px;
 }
