@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const userController = require("../../../controllers/userControllers");
+const passport = require("../../../config/passport");
 
 router
-    .route("/")
+    .route("/", passport.authenticate("local"))
     .post(userController.loginUser);
     
 module.exports = router;

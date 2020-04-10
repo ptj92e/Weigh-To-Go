@@ -6,8 +6,8 @@ module.exports = {
         db.User.create(req.body)
             .then(dbUser => res.json(dbUser));
     },
-    loginUser: function(req,res){
-        passort.authenicate("local")
+    loginUser: function(req, res){
+        res.json(req.body);
     },
     updateUser: function (req, res) {
         console.log(req.body);
@@ -18,7 +18,5 @@ module.exports = {
                     email: req.params.email
                 }
             }).then(dbUser => res.json(dbUser));
-    }
-
-
+    },
 };
