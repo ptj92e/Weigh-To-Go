@@ -1,8 +1,17 @@
 const router = require("express").Router();
-const userController = require("../../../controllers/userControllers");
+const db = require("../../../models");
+const passport = require("../../../config/passport");
 
-router
-    .route("/")
-    .post(userController.loginUser);
+router.post("/", passport.authenticate("local"), function(req, res) {
+    if (!req.body) {
+        res.json(err);
+    } else {
+        db.User.findOne({
+            where: {
+                email: req.body.email
+            }
+        }).then(dbUser => res.json(dbUser));
+    }
+});
     
 module.exports = router;
