@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Redirect } from "react-router-dom";
+import { useUserContext } from "../../utils/GlobalState";
+import { SIGN_IN } from "../../utils/actions";
 import API from "../../utils/API";
 import "./SignInForm.css";
 
@@ -9,13 +11,23 @@ function SignInForm() {
     const [signInState, setSignInState] = useState({
         signInHome: false
     });
+    const [state, dispatch] = useUserContext();
 
     const handleSubmit = e => {
         e.preventDefault();
         API.login({
             email: emailRef.current.value,
             password: passRef.current.value
-        }).then(result => {console.log(result.data)});
+        }).then(result => {
+            dispatch({
+                type: SIGN_IN,
+                currentUser: result.data
+            });
+        }).then(() => {
+            setSignInState({
+                signInHome: true
+            });
+        });
     };
 
     if (signInState.signInHome === true) {

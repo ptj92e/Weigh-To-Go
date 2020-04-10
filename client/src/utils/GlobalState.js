@@ -1,7 +1,8 @@
 import React, { createContext, useReducer, useContext } from "react";
 import {
     CREATE_NEWUSER,
-    UPDATE_NEWUSER
+    UPDATE_NEWUSER,
+    SIGN_IN
 } from "./actions";
 
 const UserContext = createContext();
@@ -24,6 +25,17 @@ const reducer = (state, action) => {
                 height: action.updateNewUser.height,
                 currentWeight: action.updateNewUser.currentWeight,
                 goalWeight: action.updateNewUser.goalWeight
+            };
+        case SIGN_IN:
+            return {
+                ...state,
+                name: action.currentUser.name,
+                email: action.currentUser.email,
+                age: action.currentUser.age,
+                gender: action.currentUser.gender,
+                height: action.currentUser.height,
+                currentWeight: action.currentUser.weight,
+                goalWeight: action.currentUser.goal_weight
             };
         default:
             return state;
