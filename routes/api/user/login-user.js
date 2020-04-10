@@ -3,9 +3,6 @@ const userController = require("../../../controllers/userControllers");
 
 router
     .route("/")
-    .post(userController.newUser);
-router
-    .route("/:email")
-    .put(userController.updateUser);
-
+    .post(userController.loginUser);
+    
 module.exports = router;

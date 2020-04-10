@@ -5,11 +5,11 @@ import "./NewUserForm.css";
 import API from "../../utils/API";
 
 function NewUserForm() {
-    const nameRef = useRef();
-    const emailRef = useRef();
-    const newPassRef = useRef();
-    const confirmPassRef = useRef();
-    const [state, dispatch] = useUserContext();
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const newPassRef = useRef();
+  const confirmPassRef = useRef();
+  const [state, dispatch] = useUserContext();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -28,6 +28,7 @@ function NewUserForm() {
             });
         };
     };
+  };
 
     return (
         <div id="newUserForm">
@@ -68,7 +69,28 @@ function NewUserForm() {
                 <button type="submit">Sign Up</button>
             </form>
         </div>
-    );
+        <div className="column col-12">
+          <label>Password:</label>
+          <input
+            type="password"
+            name="newPass"
+            placeholder="New Password"
+            required ref={newPassRef}
+          />
+          <label>Confirm:</label>
+          <input
+            type="password"
+            name="confirmPass"
+            placeholder="Confirm Password"
+            required ref={confirmPassRef}
+          />
+        </div>
+        <button type="submit">
+          {/* <Link to="/sign_up">Sign Up</Link> */}
+                    Sign Up</button>
+      </form>
+    </div>
+  );
 };
 
 export default NewUserForm;
