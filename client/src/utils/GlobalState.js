@@ -12,12 +12,18 @@ const reducer = (state, action) => {
         case CREATE_NEWUSER:
             return {
                 ...state,
-                newUser: action.newUser
+                name: action.newUser.name,
+                email: action.newUser.email,
+                password: action.newUser.password
             };
         case UPDATE_NEWUSER:
             return {
                 ...state,
-                newUserInfo: action.updateNewUser
+                age: action.updateNewUser.age,
+                gender: action.updateNewUser.gender,
+                height: action.updateNewUser.height,
+                currentWeight: action.updateNewUser.currentWeight,
+                goalWeight: action.updateNewUser.goalWeight
             };
         default:
             return state;

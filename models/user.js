@@ -31,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true
         },
         gender: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: true
         },
         goal_weight: {
