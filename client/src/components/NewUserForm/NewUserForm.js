@@ -13,7 +13,6 @@ function NewUserForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log("yay");
         if (newPassRef.current.value !== confirmPassRef.current.value) {
             alert("The two password fields should match.");
         } else {
@@ -25,9 +24,8 @@ function NewUserForm() {
                 dispatch({
                     type: CREATE_NEWUSER,
                     newUser: result.data
-                }).catch(err => console.log(err));
+                });
             });
-            // window.location.href = "/sign_up";
         };
     };
 
@@ -67,9 +65,7 @@ function NewUserForm() {
                         required ref={confirmPassRef}
                     />
                 </div>
-                <button type="submit">
-                    {/* <Link to="/sign_up">Sign Up</Link> */}
-                    Sign Up</button>
+                <button type="submit">Sign Up</button>
             </form>
         </div>
     );
