@@ -12,6 +12,8 @@ module.exports = {
                 where: {
                     email: req.params.email
                 }
-            }).then(dbUser => res.json(dbUser));
+            }).then(dbUser => {
+                res.json(dbUser);
+            });
     },
 };
