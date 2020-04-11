@@ -9,5 +9,8 @@ export default {
     },
     login: function(userData) {
         return axios.post("/api/login", userData);
+    },
+    updateGoal: function(email, userData) {
+        return axios.put("/api/user/" + email, userData);
     }
 };
