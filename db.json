@@ -3,6 +3,10 @@
         {
             "id": 1,
             "name": "Push-Ups"
+        },
+        {
+            "id": 2,
+            "name": "Bench Press"
         }
     ]
 }
