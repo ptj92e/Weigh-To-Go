@@ -2,15 +2,33 @@
     font-family: 'Blinker', sans-serif;
     text-align: center;
     margin-top: 2vh;
+    margin-bottom: 2vh;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
-    width: 65%;
+    width: 55%;
     background-color: rgba(255, 255, 255, .9);
 }
 #signInTitle h1 {
+    text-align: center;
     font-size: 45px;
 }
 #signInTitle p {
+    text-align: center;
     font-size: 25px;
+}
+@media only screen and (max-width: 992px) {
+    #signInTitle {
+        width: 65%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    #signInTitle {
+        width: 75%;
+    }
+}
+@media only screen and (max-width: 576px) {
+    #signInTitle {
+        width: 85%;
+    }
 }

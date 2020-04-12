@@ -35,7 +35,7 @@ function SignInForm() {
     } else {
         return (
             <div id="signIn">
-                <h3>Returning User? Sign in Here:</h3>
+                <h3>Sign in Here:</h3>
                 <form onSubmit={handleSubmit}>
                     <div className="column col-12">
                         <label>E-Mail:</label>
