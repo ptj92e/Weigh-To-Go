@@ -6,7 +6,6 @@ import NewUser from "./pages/NewUser";
 import Home from "./pages/Home";
 import Meals from "./pages/Meal";
 import Workouts from "./pages/Workout";
-import Account from "./pages/Account";
 import { UserProvider } from "./utils/GlobalState";
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/workouts" component={Workouts} />
           <Route exact path="/meals" component={Meals} />
-          <Route exact path="/account" component={Account} />
           <Route exact path="/new_user" component={Home} />
         </UserProvider>
       </div>

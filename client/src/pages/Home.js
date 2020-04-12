@@ -70,7 +70,7 @@ function Home() {
         <div>
             <Navbar />
             <div id="home">
-                <h1>Welcome {state.name}!</h1>
+                <h1>Welcome back {state.name}!</h1>
                 <div>
                     <h3>Here is your information:</h3>
                     <p>Age: {state.age}</p>
