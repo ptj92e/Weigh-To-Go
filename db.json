@@ -7,6 +7,18 @@
         {
             "id": 2,
             "name": "Bench Press"
+        },
+        {
+            "id":3,
+            "name":"Back Squat"
+        },
+        {
+            "id":4,
+            "name":"Front Squat"
+        },
+        {
+            "id":5,
+            "name":"Pull-Ups"
         }
     ]
 }

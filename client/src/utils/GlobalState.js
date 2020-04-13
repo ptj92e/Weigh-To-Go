@@ -2,7 +2,8 @@ import React, { createContext, useReducer, useContext } from "react";
 import {
     CREATE_NEWUSER,
     UPDATE_NEWUSER,
-    SIGN_IN
+    SIGN_IN,
+    LOG_WORKOUT
 } from "./actions";
 
 const UserContext = createContext();
@@ -37,6 +38,18 @@ const reducer = (state, action) => {
                 currentWeight: action.currentUser.weight,
                 goalWeight: action.currentUser.goal_weight
             };
+        case LOG_WORKOUT:
+            return {
+                ...state,
+                type: action.logWorkout.type,
+                exercise: action.logWorkout.exercise,
+                sets: action.logWorkout.sets,
+                reps: action.logWorkout.reps,
+                weight: action.logWorkout.weight,
+                rest: action.logWorkout.rest,
+                time: action.logWorkout.time,
+                distance: action.logWorkout.distance
+            }
         default:
             return state;
     };

@@ -9,5 +9,8 @@ export default {
     },
     login: function(userData) {
         return axios.post("/api/login", userData);
+    },
+    logWorkout: function(userData) {
+        return axios.post("/api/workout", userData)
     }
 };
