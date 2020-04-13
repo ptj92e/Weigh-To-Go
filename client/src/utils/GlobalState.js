@@ -4,7 +4,8 @@ import {
     UPDATE_NEWUSER,
     SIGN_IN,
     UPDATE_GOALWEIGHT,
-    UPDATE_WEIGHT
+    UPDATE_WEIGHT,
+    LOG_WORKOUT
 } from "./actions";
 
 const UserContext = createContext();
@@ -52,6 +53,18 @@ const reducer = (state, action) => {
                 ...state,
                 currentWeight: action.weight.weight
             };
+        case LOG_WORKOUT:
+            return {
+                ...state,
+                type: action.logWorkout.type,
+                exercise: action.logWorkout.exercise,
+                sets: action.logWorkout.sets,
+                reps: action.logWorkout.reps,
+                weight: action.logWorkout.weight,
+                rest: action.logWorkout.rest,
+                time: action.logWorkout.time,
+                distance: action.logWorkout.distance
+            }
         default:
             return state;
     };
