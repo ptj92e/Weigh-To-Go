@@ -37,6 +37,10 @@ module.exports = function (sequelize, DataTypes) {
         goal_weight: {
             type: DataTypes.INTEGER,
             allowNull: true
+        },
+        weight_loss: {
+            type: DataTypes.INTEGER,
+            allowNull: true
         }
     });
 

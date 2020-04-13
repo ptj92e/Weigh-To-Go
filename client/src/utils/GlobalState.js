@@ -3,6 +3,8 @@ import {
     CREATE_NEWUSER,
     UPDATE_NEWUSER,
     SIGN_IN,
+    UPDATE_GOALWEIGHT,
+    UPDATE_WEIGHT,
     LOG_WORKOUT
 } from "./actions";
 
@@ -24,8 +26,9 @@ const reducer = (state, action) => {
                 age: action.updateNewUser.age,
                 gender: action.updateNewUser.gender,
                 height: action.updateNewUser.height,
-                currentWeight: action.updateNewUser.currentWeight,
-                goalWeight: action.updateNewUser.goalWeight
+                currentWeight: action.updateNewUser.weight,
+                goalWeight: action.updateNewUser.goal_weight,
+                weightLoss: action.updateNewUser.weight_loss
             };
         case SIGN_IN:
             return {
@@ -36,7 +39,19 @@ const reducer = (state, action) => {
                 gender: action.currentUser.gender,
                 height: action.currentUser.height,
                 currentWeight: action.currentUser.weight,
-                goalWeight: action.currentUser.goal_weight
+                goalWeight: action.currentUser.goal_weight,
+                weightLoss: action.currentUser.weight_loss
+            };
+        case UPDATE_GOALWEIGHT:
+            return {
+                ...state,
+                goalWeight: action.goalWeight.goal_weight,
+                weightLoss: parseFloat(action.goalWeight.weight_loss)
+            };
+        case UPDATE_WEIGHT:
+            return {
+                ...state,
+                currentWeight: action.weight.weight
             };
         case LOG_WORKOUT:
             return {
@@ -64,7 +79,8 @@ const UserProvider = ({ value = [], ...props }) => {
         gender: "",
         height: "",
         currentWeight: "",
-        goalWeight: ""
+        goalWeight: "",
+        weightLoss: ""
     });
 
     return <Provider value={[state, dispatch]} {...props} />;
