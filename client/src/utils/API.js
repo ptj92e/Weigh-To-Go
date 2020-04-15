@@ -7,6 +7,9 @@ export default {
     updateUser: function(email, userData) {
         return axios.put("/api/user/" + email, userData);
     },
+    getUser: function() {
+        return axios.get("/api/user");
+    },
     login: function(userData) {
         return axios.post("/api/login", userData);
     },

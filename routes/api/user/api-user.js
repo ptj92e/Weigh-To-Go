@@ -8,4 +8,8 @@ router
     .route("/:email")
     .put(userController.updateUser);
 
+router
+    .route("/")
+    .get(userController.getUser);
+
 module.exports = router;

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import { useUserContext } from "../utils/GlobalState";
@@ -25,6 +25,8 @@ function Home() {
             });
         });
     }
+
+    useEffect(() => {API.getUser()}, []);
 
     const updateWeight = e => {
         e.preventDefault();
@@ -81,7 +83,7 @@ function Home() {
                             type="text"
                             required ref={weightRef}
                         />
-                        <button>Update Weight</button>
+                        <button>Update</button>
                     </form>
                 </div>
                 <div>
