@@ -27,10 +27,13 @@ function Workouts() {
             const response = await fetch("https://my-json-server.typicode.com/ptj92e/Weigh-To-Go/exercise");
             const body = await response.json();
             console.log(body);
-            setExercise(body.map(({ name }) => ({ label: name, value: name })));
+            setExercise(body.map(({ name, type }) => ({ label: name, value: name, type:type })));
+            
         }
         getExercise();
     }, []);
+
+    console.log(exercise.filter(exerciseC => exerciseC.type === "Cardio"));
 
     const weights = [];
     for (let i = 5; i <= 1000; i += 5) {
@@ -72,113 +75,6 @@ function Workouts() {
         });
     }
 
-    const cardioForm = () => {
-        return (
-            <div>
-                <label>Time (minutes):</label>
-                <select
-                    id="time"
-                    required ref={timeRef}>
-                    {time.map((value) => (
-                        <option key={value} value={value}>
-                            {value}
-                        </option>
-                    ))}
-                </select>
-                <br></br>
-                <label>Distance (miles):</label>
-                <select
-                    id="distance"
-                    required ref={distanceRef}>
-                    {distance.map((value) => (
-                        <option key={value} value={value}>
-                            {value}
-                        </option>
-                    ))}
-                </select>
-                <br></br>
-                <button type="submit">Add Exercise!</button>
-            </div>)
-    }
-
-    const stregthForm = () => {
-        return (
-            <div>
-                <label>Exercise:</label>
-                <select
-                    required ref={exerciseRef}>
-                    {exercise.map(({ label, value }) => (
-                        <option key={value} value={value}>
-                            {label}
-                        </option>
-                    ))}
-                </select>
-                <br></br>
-                <label>Sets:</label>
-                <select
-                    id="sets"
-                    required ref={setsRef}>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select>
-                <br></br>
-                <label>Reps:</label>
-                <select
-                    id="reps"
-                    required ref={repsRef}>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                </select>
-                <br></br>
-                <label>Weight (lbs):</label>
-                <select
-                    id="weight"
-                    required ref={weightRef}>
-                    <option>0 or Bodyweight</option>
-                    {weights.map((value) => (
-                        <option key={value} value={value}>
-                            {value}
-                        </option>
-                    ))}
-                </select>
-                <br></br>
-                <label>Rest (seconds):</label>
-                <select
-                    id="rest"
-                    required ref={restRef}>
-                    {rests.map((value) => (
-                        <option key={value} value={value}>
-                            {value}
-                        </option>
-                    ))}
-                </select>
-                <br></br>
-                <button type="submit">Add Exercise!</button>
-            </div>
-        )
-    }
-
     return (
         <div>
             <Navbar />
@@ -201,7 +97,9 @@ function Workouts() {
                         <label>Exercise:</label>
                         <select
                             required ref={exerciseRef}>
-                            {exercise.map(({ label, value }) => (
+                            {exercise
+                            .filter(exercise => exercise.type === "Cardio")
+                            .map(({ label, value }) => (
                                 <option key={value} value={value}>
                                     {label}
                                 </option>
@@ -235,7 +133,9 @@ function Workouts() {
                         <label>Exercise:</label>
                         <select
                             required ref={exerciseRef}>
-                            {exercise.map(({ label, value }) => (
+                            {exercise
+                            .filter(exercise => exercise.type === "Strength Training")
+                            .map(({ label, value }) => (
                                 <option key={value} value={value}>
                                     {label}
                                 </option>
