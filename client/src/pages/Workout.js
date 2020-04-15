@@ -17,8 +17,6 @@ function Workouts() {
     const timeRef = useRef();
     const distanceRef = useRef();
     const [state, dispatch] = useUserContext();
-    let form;
-    console.log(typeRef);
 
 
     useEffect(() => {
@@ -26,14 +24,14 @@ function Workouts() {
             // const response = await fetch("https://wger.de/api/v2/exercise/?language=2");
             const response = await fetch("https://my-json-server.typicode.com/ptj92e/Weigh-To-Go/exercise");
             const body = await response.json();
-            console.log(body);
+            // console.log(body);
             setExercise(body.map(({ name, type }) => ({ label: name, value: name, type:type })));
             
         }
         getExercise();
     }, []);
 
-    console.log(exercise.filter(exerciseC => exerciseC.type === "Cardio"));
+    // console.log(exercise.filter(exerciseC => exerciseC.type === "Cardio"));
 
     const weights = [];
     for (let i = 5; i <= 1000; i += 5) {
@@ -55,15 +53,17 @@ function Workouts() {
         distance.push(l);
     }
 
+    // console.log(type)
     const handleSubmit = e => {
         e.preventDefault();
+        if (type === "Cardio"){
         API.logWorkout({
             type: typeRef.current.value,
             exercise: exerciseRef.current.value,
-            sets: setsRef.current.value,
-            reps: repsRef.current.value,
-            weight: weightRef.current.value,
-            rest: restRef.current.value,
+            // sets: setsRef.current.value,
+            // reps: repsRef.current.value,
+            // weight: weightRef.current.value,
+            // rest: restRef.current.value,
             time: timeRef.current.value,
             distance: distanceRef.current.value
         }).then(result => {
@@ -71,8 +71,25 @@ function Workouts() {
                 type: LOG_WORKOUT,
                 logWorkout: result.data
             });
-            console.log(typeRef.current.value)
+            // console.log(typeRef.current.value)
         });
+    } else 
+    API.logWorkout({
+        type: typeRef.current.value,
+        exercise: exerciseRef.current.value,
+        sets: setsRef.current.value,
+        reps: repsRef.current.value,
+        weight: weightRef.current.value,
+        rest: restRef.current.value,
+        // time: timeRef.current.value,
+        // distance: distanceRef.current.value
+    }).then(result => {
+        dispatch({
+            type: LOG_WORKOUT,
+            logWorkout: result.data
+        });
+        // console.log(typeRef.current.value)
+    });
     }
 
     return (
