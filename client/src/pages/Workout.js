@@ -8,6 +8,7 @@ import { useUserContext } from "../utils/GlobalState";
 function Workouts() {
     const [exercise, setExercise] = useState([]);
     const [type, setType] = useState("Cardio");
+    const [displayExercise, setDisplayExercise] = useState();
     const typeRef = useRef();
     const exerciseRef = useRef();
     const setsRef = useRef();
@@ -20,13 +21,21 @@ function Workouts() {
 
 
     useEffect(() => {
+        
+            API.showExercise().then(exerciseData => {
+                setDisplayExercise(exerciseData.data)
+                console.log(exerciseData)
+            })
+        
+    },[]);
+
+    useEffect(() => {
         async function getExercise() {
             // const response = await fetch("https://wger.de/api/v2/exercise/?language=2");
             const response = await fetch("https://my-json-server.typicode.com/ptj92e/Weigh-To-Go/exercise");
             const body = await response.json();
             // console.log(body);
-            setExercise(body.map(({ name, type }) => ({ label: name, value: name, type:type })));
-            
+            setExercise(body.map(({ name, type }) => ({ label: name, value: name, type: type })));
         }
         getExercise();
     }, []);
@@ -56,40 +65,40 @@ function Workouts() {
     // console.log(type)
     const handleSubmit = e => {
         e.preventDefault();
-        if (type === "Cardio"){
-        API.logWorkout({
-            type: typeRef.current.value,
-            exercise: exerciseRef.current.value,
-            // sets: setsRef.current.value,
-            // reps: repsRef.current.value,
-            // weight: weightRef.current.value,
-            // rest: restRef.current.value,
-            time: timeRef.current.value,
-            distance: distanceRef.current.value
-        }).then(result => {
-            dispatch({
-                type: LOG_WORKOUT,
-                logWorkout: result.data
+        if (type === "Cardio") {
+            API.logWorkout({
+                type: typeRef.current.value,
+                exercise: exerciseRef.current.value,
+                // sets: setsRef.current.value,
+                // reps: repsRef.current.value,
+                // weight: weightRef.current.value,
+                // rest: restRef.current.value,
+                time: timeRef.current.value,
+                distance: distanceRef.current.value
+            }).then(result => {
+                dispatch({
+                    type: LOG_WORKOUT,
+                    logWorkout: result.data
+                });
+                // console.log(typeRef.current.value)
             });
-            // console.log(typeRef.current.value)
-        });
-    } else 
-    API.logWorkout({
-        type: typeRef.current.value,
-        exercise: exerciseRef.current.value,
-        sets: setsRef.current.value,
-        reps: repsRef.current.value,
-        weight: weightRef.current.value,
-        rest: restRef.current.value,
-        // time: timeRef.current.value,
-        // distance: distanceRef.current.value
-    }).then(result => {
-        dispatch({
-            type: LOG_WORKOUT,
-            logWorkout: result.data
-        });
-        // console.log(typeRef.current.value)
-    });
+        } else
+            API.logWorkout({
+                type: typeRef.current.value,
+                exercise: exerciseRef.current.value,
+                sets: setsRef.current.value,
+                reps: repsRef.current.value,
+                weight: weightRef.current.value,
+                rest: restRef.current.value,
+                // time: timeRef.current.value,
+                // distance: distanceRef.current.value
+            }).then(result => {
+                dispatch({
+                    type: LOG_WORKOUT,
+                    logWorkout: result.data
+                });
+                // console.log(typeRef.current.value)
+            });
     }
 
     return (
@@ -115,12 +124,12 @@ function Workouts() {
                         <select
                             required ref={exerciseRef}>
                             {exercise
-                            .filter(exercise => exercise.type === "Cardio")
-                            .map(({ label, value }) => (
-                                <option key={value} value={value}>
-                                    {label}
-                                </option>
-                            ))}
+                                .filter(exercise => exercise.type === "Cardio")
+                                .map(({ label, value }) => (
+                                    <option key={value} value={value}>
+                                        {label}
+                                    </option>
+                                ))}
                         </select>
                         <br></br>
                         <label>Time (minutes):</label>
@@ -151,12 +160,12 @@ function Workouts() {
                         <select
                             required ref={exerciseRef}>
                             {exercise
-                            .filter(exercise => exercise.type === "Strength Training")
-                            .map(({ label, value }) => (
-                                <option key={value} value={value}>
-                                    {label}
-                                </option>
-                            ))}
+                                .filter(exercise => exercise.type === "Strength Training")
+                                .map(({ label, value }) => (
+                                    <option key={value} value={value}>
+                                        {label}
+                                    </option>
+                                ))}
                         </select>
                         <br></br>
                         <label>Sets:</label>
@@ -223,6 +232,20 @@ function Workouts() {
                 <br></br>
                 <button type="submit">Add Exercise!</button>
             </form>
+
+            <div>
+                
+                <ul>
+                    {displayExercise ? displayExercise.map(exercise => (
+                        <li>
+                            {exercise.exercise}
+                        </li>
+                    )):
+                    "Loading"}
+                </ul>
+            </div>
+
+
         </div >
     )
 }
