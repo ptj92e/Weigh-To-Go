@@ -4,4 +4,5 @@ export const SIGN_IN = "SIGN_IN";
 export const UPDATE_GOALWEIGHT = "UPDATE_GOALWEIGHT";
 export const UPDATE_WEIGHT = "UPDATE_WEIGHT";
 export const LOG_WORKOUT = "LOG_WORKOUT";
+export const SHOW_EXERCISE = "SHOW_EXERCISE";
 
