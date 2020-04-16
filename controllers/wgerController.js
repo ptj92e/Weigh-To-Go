@@ -16,4 +16,14 @@ module.exports = {
             req.body,
             ).then(dbUser => res.json(dbUser));
     },
+    showExercise: function (req, res) {
+        db.Workouts.findAll({
+            limit:5,
+            order:[["id","DESC"]],
+            where:{
+                UserId:req.user.id
+            }
+        }).then(dbUser => res.json(dbUser));
+        
+    },
 };

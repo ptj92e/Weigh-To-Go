@@ -12,5 +12,8 @@ export default {
     },
     logWorkout: function(userData) {
         return axios.post("/api/workout", userData)
+    },
+    showExercise: function() {
+        return axios.get("/api/workout")
     }
 };
