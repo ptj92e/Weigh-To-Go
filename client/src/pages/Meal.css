@@ -1,17 +1,13 @@
-#workout {
+#meal {
     width: 55%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2vh;
     margin-bottom: 2vh;
     background-color: rgba(255, 255, 255, 0.9);
-    /* text-align: center; */
-}
-.center{
     text-align: center;
-    justify-content: center;
 }
-#workout button {
+#meal button {
     background-color: #8860d0;
     color: white;
     padding: 10px;
@@ -19,38 +15,38 @@
     border: 1px solid #8860d0;
     margin: 10px;
 }
-#workout button:hover {
+#meal button:hover {
     background-color: white;
     color: #8860d0;
     box-shadow: 0px 0px 5px #8860d0;
 }
 @media only screen and (max-width: 992px) {
-    #workout {
+    #meal {
         width: 65%;
     }
-    #workout label {
+    #meal label {
         display: inline-block;
         width: 40%;
     }
-    #workout input {
+    #meal input {
         width: 50%;
     }
-    #workout select {
+    #meal select {
         width: 50%;
     }
 }
 @media only screen and (max-width: 768px) {
-    #workout {
+    #meal {
         width: 75%;
     }
-    #workout label {
+    #meal label {
         display: inline-block;
         width: 90%
     }
-    #workout input {
+    #meal input {
         width: 90%;
     }
-    #workout select {
+    #meal select {
         width: 90%;
     }
 }

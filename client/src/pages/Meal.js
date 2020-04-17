@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useUserContext } from "../utils/GlobalState";
+import MealDisplay from "../components/MealDisplay/MealDisplay";
 import Navbar from "../components/Navbar/Navbar";
 import API from "../utils/API";
+import "./Meal.css";
 
 function Meals() {
     const searchRef = useRef();
@@ -20,7 +21,6 @@ function Meals() {
         protein: ""
     });
     const [mealDisplay, setMealDisplay] = useState([]);
-    const [state, dispatch] = useUserContext();
 
     useEffect(() => {
         API.showMeal().then(mealData => {
@@ -86,7 +86,7 @@ function Meals() {
             protein: protein
         });
     }
-    
+
     const saveMeal = e => {
         e.preventDefault();
         API.logMeal({
@@ -105,44 +105,47 @@ function Meals() {
     return (
         <div>
             <Navbar />
-            <h1>What is the name of this meal?</h1>
-            <form>
-                <input
-                    type="text"
-                    required ref={nameRef}
-                />
-                <p>How many servings did you have?</p>
-                <select ref={servingRef}>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                </select>
-            </form>
-            <form onSubmit={searchFood}>
-                <h4>Search for a food:</h4>
-                <input
-                    type="text"
-                    required
-                    ref={searchRef}
-                    onChange={() => {
-                        setSearchState({
-                            search: searchRef.current.value
-                        })
-                    }}
-                />
-                <button type="submit">Search</button>
-                <ul>
-                    {resultState.name ?
-                        <li>{resultState.name}<button onClick={addFood}>Add Food</button></li> :
-                        <li>Search Results</li>}
-                </ul>
-            </form>
-            <button onClick={saveMeal} type="submit">Save Meal</button>
+            <div id="meal">
+                <h1>What is the name of this meal?</h1>
+                <form>
+                    <input
+                        type="text"
+                        required ref={nameRef}
+                    />
+                    <p>How many servings did you have?</p>
+                    <select ref={servingRef}>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                    </select>
+                </form>
+                <form onSubmit={searchFood}>
+                    <h4>Search for a food:</h4>
+                    <input
+                        type="text"
+                        required
+                        ref={searchRef}
+                        onChange={() => {
+                            setSearchState({
+                                search: searchRef.current.value
+                            })
+                        }}
+                    />
+                    <button type="submit">Search</button>
+                    <ul>
+                        {resultState.name ?
+                            <li>{resultState.name}<button onClick={addFood}>Add Food</button></li> :
+                            <li>Search Results</li>}
+                    </ul>
+                </form>
+                <button onClick={saveMeal} type="submit">Save Meal</button>
+                <MealDisplay meal={mealDisplay} />
+            </div>
         </div>
     )
 }
