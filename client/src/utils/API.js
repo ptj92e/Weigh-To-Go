@@ -29,5 +29,11 @@ export default {
                 "x-app-key": "ea8f4ac32f52281362afd5ed366bf27e"
             }
         });
+    },
+    logMeal: function (userData) {
+        return axios.post("/api/meal", userData)
+    },
+    showMeal: function () {
+        return axios.get("/api/meal")
     }
 };

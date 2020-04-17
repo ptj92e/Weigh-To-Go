@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useUserContext } from "../utils/GlobalState";
 import Navbar from "../components/Navbar/Navbar";
 import API from "../utils/API";
 
@@ -18,10 +19,18 @@ function Meals() {
         carbs: "",
         protein: ""
     });
+    const [mealDisplay, setMealDisplay] = useState([]);
+    const [state, dispatch] = useUserContext();
 
     useEffect(() => {
-
+        API.showMeal().then(mealData => {
+            setMealDisplay(mealData.data);
+        })
     }, [resultState]);
+
+    useEffect(() => {
+        nutritionCalc();
+    }, [recipeState]);
 
     const searchFood = e => {
         e.preventDefault();
@@ -51,33 +60,46 @@ function Meals() {
         );
     }
 
-    const nutritionCalc = e => {
-        e.preventDefault();
+    const nutritionCalc = () => {
         let name = nameRef.current.value;
-        let servings = servingRef.current.value;
+        let servings = parseInt(servingRef.current.value);
         let calories = 0;
         let fat = 0;
         let carbs = 0;
         let protein = 0;
-        if (recipeState.length === 0) {
-            alert("There are no ingredients");
-        } else {
-            for (let i = 0; i < recipeState.length; i++) {
-                calories = calories += recipeState[i].calories;
-                fat = fat += recipeState[i].fat;
-                carbs = carbs += recipeState[i].carbs;
-                protein = protein += recipeState[i].protein;
-            }
-            setMealState({
-                name: name,
-                servings: servings,
-                calories: calories,
-                total_calories: calories,
-                fat: fat,
-                carbs: carbs,
-                protein: protein
-            });
+        // if (recipeState.length === 0) {
+        //     alert("There are no ingredients");
+        // } else {
+        for (let i = 0; i < recipeState.length; i++) {
+            calories = calories += recipeState[i].calories;
+            fat = fat += recipeState[i].fat;
+            carbs = carbs += recipeState[i].carbs;
+            protein = protein += recipeState[i].protein;
         }
+        setMealState({
+            name: name,
+            servings: servings,
+            calories: calories,
+            total_calories: calories,
+            fat: fat,
+            carbs: carbs,
+            protein: protein
+        });
+    }
+    
+    const saveMeal = e => {
+        e.preventDefault();
+        API.logMeal({
+            meal: mealState.name,
+            servings: parseInt(mealState.servings),
+            calories: parseInt(mealState.calories),
+            total_calories: parseInt(mealState.calories),
+            fat: parseInt(mealState.fat),
+            carbs: parseInt(mealState.carbs),
+            protein: parseInt(mealState.protein)
+        }).then(res => {
+            setMealDisplay(res.data);
+        }).then(console.log(mealDisplay));
     }
 
     return (
@@ -100,27 +122,27 @@ function Meals() {
                     <option>7</option>
                     <option>8</option>
                 </select>
-                <form onSubmit={searchFood}>
-                    <h4>Search for a food:</h4>
-                    <input
-                        type="text"
-                        ref={searchRef}
-                        onChange={() => {
-                            setSearchState({
-                                search: searchRef.current.value
-                            })
-                        }}
-                    />
-                    <button type="submit">Search</button>
-                    <ul>
-                        {resultState.name ?
-                            <li>{resultState.name}<button onClick={addFood}>Add Food</button></li> :
-                            <li>Search Results</li>}
-                    </ul>
-                </form>
-                <button onClick={nutritionCalc} type="submit">Save Meal</button>
             </form>
-            <button onClick={() => console.log(mealState)}>Please Have Worked</button>
+            <form onSubmit={searchFood}>
+                <h4>Search for a food:</h4>
+                <input
+                    type="text"
+                    required
+                    ref={searchRef}
+                    onChange={() => {
+                        setSearchState({
+                            search: searchRef.current.value
+                        })
+                    }}
+                />
+                <button type="submit">Search</button>
+                <ul>
+                    {resultState.name ?
+                        <li>{resultState.name}<button onClick={addFood}>Add Food</button></li> :
+                        <li>Search Results</li>}
+                </ul>
+            </form>
+            <button onClick={saveMeal} type="submit">Save Meal</button>
         </div>
     )
 }
