@@ -8,7 +8,7 @@ function ExerciseDisplay(props) {
     return (
         <div>
             {props.exercise.type === "Cardio" ?
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th className="col-2">Exercise</th>
@@ -17,7 +17,7 @@ function ExerciseDisplay(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="active">
+                        <tr className="active">
                             <td className="col-2">{props.exercise.exercise}</td>
                             <td className="col-2">{props.exercise.time}</td>
                             <td className="col-2">{props.exercise.distance}</td>
@@ -30,7 +30,7 @@ function ExerciseDisplay(props) {
                 //         Time - {props.exercise.time} min,
                 //         Distance - {props.exercise.distance} miles
                 //     </div> :
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th className="col-2">Exercise</th>
@@ -41,7 +41,7 @@ function ExerciseDisplay(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="active">
+                        <tr className="active">
                             <td className="col-2">{props.exercise.exercise}</td>
                             <td className="col-2">{props.exercise.sets}</td>
                             <td className="col-2">{props.exercise.reps}</td>
