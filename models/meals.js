@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes){
         },
         date: {
             type: DataTypes.DATE,
-            allowNull: false
+            allowNull: DataTypes.NOW
         }
     });
 

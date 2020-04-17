@@ -16,4 +16,7 @@ module.exports = {
                 res.json(dbUser);
             });
     },
+    getUser: function (req, res) {
+        console.log(req.session);
+    }
 };
