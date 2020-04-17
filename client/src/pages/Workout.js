@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar/Navbar";
 import API from "../utils/API";
 import { LOG_WORKOUT } from "../utils/actions";
 import { useUserContext } from "../utils/GlobalState";
+import ExerciseDisplay from "../components/ExerciseDisplay/ExerciseDisplay";
 
 
 function Workouts() {
@@ -237,9 +238,9 @@ function Workouts() {
                 
                 <ul>
                     {displayExercise ? displayExercise.map(exercise => (
-                        <li>
-                            {exercise.exercise}
-                        </li>
+                            <div>
+                            <ExerciseDisplay exercise={exercise}/>
+                            </div>
                     )):
                     "Loading"}
                 </ul>
