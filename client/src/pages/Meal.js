@@ -5,25 +5,37 @@ import API from "../utils/API";
 function Meals() {
     const searchRef = useRef();
     const [searchState, setSearchState] = useState([]);
-    const [resultState, setResultState] = useState([]);
-    const [recipteState, setRecipeState] = useState([]);
+    const [resultState, setResultState] = useState({});
+    const [recipeState, setRecipeState] = useState([]);
 
     useEffect(() => {
-    }, []);
+
+    }, [resultState]);
 
     const searchFood = e => {
         e.preventDefault();
         API.searchFood(searchState.search).then(res => {
             setResultState({
-                result: {
-                    name: res.data.foods[0].food_name,
-                    calories: res.data.foods[0],
-                    fat: res.data.foods[0].nf_total_fat,
-                    carbs: res.data.foods[0].nf_total_carbohydrate,
-                    protein: res.data.foods[0].nf_protein
-                }
+                name: res.data.foods[0].food_name,
+                calories: res.data.foods[0].nf_calories,
+                fat: res.data.foods[0].nf_total_fat,
+                carbs: res.data.foods[0].nf_total_carbohydrate,
+                protein: res.data.foods[0].nf_protein
             });
         });
+    }
+
+    const addFood = e => {
+        e.preventDefault();
+        recipeState.concat(
+            {
+                calories: resultState.calories,
+                fat: resultState.fat,
+                carbs: resultState.carbs,
+                protein: resultState.protein
+            }
+        );
+        console.log(recipeState);
     }
 
     return (
@@ -42,15 +54,13 @@ function Meals() {
                     }}
                 />
                 <button type="submit">Search</button>
-                <ul>
-                    {resultState === null ?
-                        <li>Search For Results</li>
-                        :
-                        resultState.result.map(result => (
-                            <li>{result[0].name}<button onClick={console.log(resultState)}>Add Food</button></li>
-                        ))}
-                </ul>
             </form>
+            <button onClick={() => { console.log(resultState) }}>Please Work</button>
+            <ul>
+                {resultState.name ?
+                    <li>{resultState.name}<button onClick={addFood}>Add Food</button></li> :
+                    <li>Search Results</li>}
+            </ul>
         </div>
     )
 }
