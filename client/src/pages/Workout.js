@@ -28,7 +28,7 @@ function Workouts() {
                 console.log(exerciseData)
             })
         
-    },[]);
+    },[state]);
 
     useEffect(() => {
         async function getExercise() {
