@@ -4,7 +4,7 @@ import API from "../utils/API";
 import { LOG_WORKOUT } from "../utils/actions";
 import { useUserContext } from "../utils/GlobalState";
 import ExerciseDisplay from "../components/ExerciseDisplay/ExerciseDisplay";
-
+import "./Workout.css"
 
 function Workouts() {
     const [exercise, setExercise] = useState([]);
@@ -22,13 +22,13 @@ function Workouts() {
 
 
     useEffect(() => {
-        
-            API.showExercise().then(exerciseData => {
-                setDisplayExercise(exerciseData.data)
-                console.log(exerciseData)
-            })
-        
-    },[state]);
+
+        API.showExercise().then(exerciseData => {
+            setDisplayExercise(exerciseData.data)
+            console.log(exerciseData)
+        })
+
+    }, [state]);
 
     useEffect(() => {
         async function getExercise() {
@@ -42,6 +42,16 @@ function Workouts() {
     }, []);
 
     // console.log(exercise.filter(exerciseC => exerciseC.type === "Cardio"));
+
+    const sets = [];
+    for (let i = 0; i <= 10; i += 1) {
+        sets.push(i);
+    }
+
+    const reps = [];
+    for (let i = 0; i <= 20; i += 1) {
+        reps.push(i);
+    }
 
     const weights = [];
     for (let i = 5; i <= 1000; i += 5) {
@@ -105,148 +115,165 @@ function Workouts() {
     return (
         <div>
             <Navbar />
-            <h1>Today's Workout:</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Select Your Exercises for the day:</label>
-                <br></br>
-                <label>Exercise Type:</label>
-                <select
-                    type="text"
-                    id="type"
-                    required ref={typeRef}
-                    onChange={e => setType(e.target.value)}>
-                    <option>Cardio</option>
-                    <option>Strength Training</option>
-                </select>
-                <br></br>
-                {type === "Cardio" ?
-                    <div>
-                        <label>Exercise:</label>
-                        <select
-                            required ref={exerciseRef}>
-                            {exercise
-                                .filter(exercise => exercise.type === "Cardio")
-                                .map(({ label, value }) => (
-                                    <option key={value} value={value}>
-                                        {label}
-                                    </option>
-                                ))}
-                        </select>
+            <div id="workout">
+                <h1 id="WorkoutHeader" className="center">Today's Workout:</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="center">
+                        <label className="center">Select Your Exercises for the day:</label>
                         <br></br>
-                        <label>Time (minutes):</label>
-                        <select
-                            id="time"
-                            required ref={timeRef}>
-                            {time.map((value) => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
+                        <label className="center">Exercise Type:</label>
                         <br></br>
-                        <label>Distance (miles):</label>
                         <select
-                            id="distance"
-                            required ref={distanceRef}>
-                            {distance.map((value) => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
+                            type="text"
+                            id="type"
+                            required ref={typeRef}
+                            onChange={e => setType(e.target.value)}>
+                            <option>Cardio</option>
+                            <option>Strength Training</option>
                         </select>
                     </div>
-                    :
+                    <br></br>
                     <div>
-                        <label>Exercise:</label>
-                        <select
-                            required ref={exerciseRef}>
-                            {exercise
-                                .filter(exercise => exercise.type === "Strength Training")
-                                .map(({ label, value }) => (
-                                    <option key={value} value={value}>
-                                        {label}
-                                    </option>
-                                ))}
-                        </select>
-                        <br></br>
-                        <label>Sets:</label>
-                        <select
-                            id="sets"
-                            required ref={setsRef}>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                        </select>
-                        <br></br>
-                        <label>Reps:</label>
-                        <select
-                            id="reps"
-                            required ref={repsRef}>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                        </select>
-                        <br></br>
-                        <label>Weight (lbs):</label>
-                        <select
-                            id="weight"
-                            required ref={weightRef}>
-                            <option>0 or Bodyweight</option>
-                            {weights.map((value) => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
-                        <br></br>
-                        <label>Rest (seconds):</label>
-                        <select
-                            id="rest"
-                            required ref={restRef}>
-                            {rests.map((value) => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                }
-                <br></br>
-                <button type="submit">Add Exercise!</button>
-            </form>
-
-            <div>
-                
-                <ul>
-                    {displayExercise ? displayExercise.map(exercise => (
-                            <div>
-                            <ExerciseDisplay exercise={exercise}/>
+                        {type === "Cardio" ?
+                            <div className="columns oneline center">
+                                <div className="col-md-12 col-5">
+                                    <label className="">Exercise: </label>
+                                    <br></br>
+                                    <select
+                                        required ref={exerciseRef}>
+                                        {exercise
+                                            .filter(exercise => exercise.type === "Cardio")
+                                            .map(({ label, value }) => (
+                                                <option key={value} value={value}>
+                                                    {label}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <br></br>
+                                <div className="col-md-12 col-3">
+                                    <label>Time (minutes):  </label>
+                                    <br></br>
+                                    <select
+                                        id="time"
+                                        required ref={timeRef}>
+                                        {time.map((value) => (
+                                            <option key={value} value={value}>
+                                                {value}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <br></br>
+                                <div className="col-md-12 col-4">
+                                    <label>Distance (miles): </label>
+                                    <br></br>
+                                    <select
+                                        id="distance"
+                                        required ref={distanceRef}>
+                                        {distance.map((value) => (
+                                            <option key={value} value={value}>
+                                                {value}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
                             </div>
-                    )):
-                    "Loading"}
-                </ul>
+                            :
+                            <div className="columns oneline center">
+                                <div className="col-lg-12 col-4">
+                                    <label>Exercise:</label>
+                                    <br></br>
+                                    <select
+                                        required ref={exerciseRef}>
+                                        {exercise
+                                            .filter(exercise => exercise.type === "Strength Training")
+                                            .map(({ label, value }) => (
+                                                <option key={value} value={value}>
+                                                    {label}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+                                <br></br>
+                                <div className="col-lg-12 col-1">
+                                    <label>Sets:</label>
+                                    <br></br>
+                                    <select
+                                        id="sets"
+                                        required ref={setsRef}>
+                                        {sets.map((value) => (
+                                            <option key={value} value={value}>
+                                                {value}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <br></br>
+                                <div className="col-lg-12 col-2">
+                                    <label>Reps:</label>
+                                    <br></br>
+                                    <select
+                                        id="reps"
+                                        required ref={repsRef}>
+                                        {reps.map((value) => (
+                                            <option key={value} value={value}>
+                                                {value}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <br></br>
+                                <div className="col-lg-12 col-3">
+                                    <label>Weight (lbs):</label>
+                                    <br></br>
+                                    <select
+                                        id="weight"
+                                        required ref={weightRef}>
+                                        <option>0 or Bodyweight</option>
+                                        {weights.map((value) => (
+                                            <option key={value} value={value}>
+                                                {value}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <br></br>
+                                <div className="col-lg-12 col-2">
+                                    <label>Rest (sec):</label>
+                                    <br></br>
+                                    <select
+                                        id="rest"
+                                        required ref={restRef}>
+                                        {rests.map((value) => (
+                                            <option key={value} value={value}>
+                                                {value}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <br></br>
+                    <div className="center">
+                        <button type="submit">Add Exercise!</button>
+                    </div>
+                </form>
+                <br></br>
+                <div className="center">
+                    <h3 className="center">Past Exercises: </h3>
+                    <ul>
+                        {displayExercise ? displayExercise.map(exercise => (
+                            <div>
+                                <ExerciseDisplay exercise={exercise} />
+                            </div>
+                        )) :
+                            "Loading..."}
+                    </ul>
+                </div>
+
             </div>
-
-
         </div >
     )
 }
