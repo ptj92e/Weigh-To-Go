@@ -4,8 +4,8 @@ export default {
     createUser: function (userData) {
         return axios.post("/api/user", userData);
     },
-    updateUser: function (email, userData) {
-        return axios.put("/api/user/" + email, userData);
+    updateUser: function (id, userData) {
+        return axios.put("/api/user/" + id, userData);
     },
     getUser: function () {
         return axios.get("/api/user");

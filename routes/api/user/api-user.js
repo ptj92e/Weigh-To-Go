@@ -5,7 +5,7 @@ router
     .route("/")
     .post(userController.newUser);
 router
-    .route("/:email")
+    .route("/:id")
     .put(userController.updateUser);
 
 router

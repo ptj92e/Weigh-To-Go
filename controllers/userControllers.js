@@ -10,13 +10,20 @@ module.exports = {
             req.body,
             {
                 where: {
-                    email: req.params.email
+                    id: req.params.id
                 }
             }).then(dbUser => {
                 res.json(dbUser);
             });
     },
     getUser: function (req, res) {
-        console.log(req.session);
+        console.log(req.session.passport.user.id);
+        db.User.findOne({
+            where: {
+                id: req.session.passport.user.id
+            }
+        }).then(dbUser => {
+            res.json(dbUser);
+        });
     }
 };
