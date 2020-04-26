@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import API from "../utils/API";
-import { LOG_WORKOUT } from "../utils/actions";
-import { useUserContext } from "../utils/GlobalState";
 import ExerciseDisplay from "../components/ExerciseDisplay/ExerciseDisplay";
-import "./Workout.css"
+import "./css/Workout.css"
 
 function Workouts() {
     const [exercise, setExercise] = useState([]);
@@ -18,30 +16,34 @@ function Workouts() {
     const restRef = useRef();
     const timeRef = useRef();
     const distanceRef = useRef();
-    const [state, dispatch] = useUserContext();
-
+    const [userState, setUserState] = useState({
+        user: {}
+    });
+    // This gets the user information from the session and saves it to the userState
+    const viewUser = () => {
+        API.getUser()
+            .then(result => {
+                setUserState({
+                    user: result.data
+                });
+            });
+    };
 
     useEffect(() => {
-
-        API.showExercise().then(exerciseData => {
-            setDisplayExercise(exerciseData.data)
-            console.log(exerciseData)
-        })
-
-    }, [state]);
+        viewUser();
+        API.showExercise(userState.user.id).then(exerciseData => {
+            setDisplayExercise(exerciseData.data);
+        });
+    }, displayExercise);
 
     useEffect(() => {
         async function getExercise() {
-            // const response = await fetch("https://wger.de/api/v2/exercise/?language=2");
             const response = await fetch("https://my-json-server.typicode.com/ptj92e/Weigh-To-Go/exercise");
             const body = await response.json();
-            // console.log(body);
             setExercise(body.map(({ name, type }) => ({ label: name, value: name, type: type })));
         }
         getExercise();
     }, []);
-
-    // console.log(exercise.filter(exerciseC => exerciseC.type === "Cardio"));
 
     const sets = [];
     for (let i = 0; i <= 10; i += 1) {
@@ -80,18 +82,8 @@ function Workouts() {
             API.logWorkout({
                 type: typeRef.current.value,
                 exercise: exerciseRef.current.value,
-                // sets: setsRef.current.value,
-                // reps: repsRef.current.value,
-                // weight: weightRef.current.value,
-                // rest: restRef.current.value,
                 time: timeRef.current.value,
                 distance: distanceRef.current.value
-            }).then(result => {
-                dispatch({
-                    type: LOG_WORKOUT,
-                    logWorkout: result.data
-                });
-                // console.log(typeRef.current.value)
             });
         } else
             API.logWorkout({
@@ -100,15 +92,7 @@ function Workouts() {
                 sets: setsRef.current.value,
                 reps: repsRef.current.value,
                 weight: weightRef.current.value,
-                rest: restRef.current.value,
-                // time: timeRef.current.value,
-                // distance: distanceRef.current.value
-            }).then(result => {
-                dispatch({
-                    type: LOG_WORKOUT,
-                    logWorkout: result.data
-                });
-                // console.log(typeRef.current.value)
+                rest: restRef.current.value
             });
     }
 

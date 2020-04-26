@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useUserContext } from "../utils/GlobalState";
 import { UPDATE_NEWUSER } from "../utils/actions";
 import API from "../utils/API";
-import "./NewUser.css";
+import "./css/NewUser.css";
 
 function NewUser() {
     const ageRef = useRef();

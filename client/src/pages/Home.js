@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
-import "./Home.css";
+import "./css/Home.css";
 import UpdateWeight from "../components/UpdateWeight/UpdateWeight"
 import API from "../utils/API";
 

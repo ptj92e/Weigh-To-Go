@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import MealDisplay from "../components/MealDisplay/MealDisplay";
 import Navbar from "../components/Navbar/Navbar";
 import API from "../utils/API";
-import "./Meal.css";
+import "./css/Meal.css";
 
 function Meals() {
     const searchRef = useRef();
