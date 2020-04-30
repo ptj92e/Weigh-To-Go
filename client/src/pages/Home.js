@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import "./css/Home.css";
-import UpdateWeight from "../components/UpdateWeight/UpdateWeight"
+import WorkoutTable from "../components/WorkoutTable/WorkoutTable";
+import MealDisplay from "../components/MealDisplay/MealDisplay";
 import API from "../utils/API";
 
 function Home() {
@@ -9,6 +10,9 @@ function Home() {
     const [userState, setUserState] = useState({
         user: {}
     });
+    const [displayExercise, setDisplayExercise] = useState();
+    const [mealDisplay, setMealDisplay] = useState();
+
 
     const viewUser = () => {
         API.getUser()
@@ -19,9 +23,25 @@ function Home() {
             });
     };
 
+    const viewExercises = () => {
+        API.showExercise(userState.user.id)
+            .then(exerciseData => {
+                setDisplayExercise(exerciseData.data);
+        });
+    };
+
+    const viewMeals = () => {
+        API.showMeal()
+            .then(MealData => {
+                setMealDisplay(MealData.data);
+            });
+    };
+
     useEffect(() => {
-        viewUser()
-    }, []);
+        viewUser();
+        viewMeals();
+        viewExercises();
+    }, displayExercise);
 
     const updateWeight = e => {
         e.preventDefault();
@@ -30,7 +50,7 @@ function Home() {
         }).then(() => {
             viewUser();
         });
-    }
+    };
 
     const calcWeightLoss = (userState) => {
         if (userState.user.goal_weight < userState.user.weight) {
@@ -58,15 +78,19 @@ function Home() {
         } else {
             return 0;
         }
-    }
+    };
 
     return (
         <div>
             <Navbar />
             <div id="home">
                 <h1>Welcome back {userState.user.name}!</h1>
-                <UpdateWeight 
-                    calcWeightLoss={calcWeightLoss}
+                <p>Your current weight is: {userState.user.weight}</p>
+                <MealDisplay 
+                    meal={mealDisplay}
+                />
+                <WorkoutTable 
+                    exerciseArray={displayExercise}
                 />
             </div>
         </div>

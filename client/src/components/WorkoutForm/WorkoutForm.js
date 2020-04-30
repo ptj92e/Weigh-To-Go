@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import WorkoutTable from "../WorkoutTable/WorkoutTable";
 import API from "../../utils/API";
 import "./WorkoutForm.css";
 
@@ -17,7 +16,6 @@ function WorkoutForm() {
     });
     const [exercise, setExercise] = useState([]);
     const [type, setType] = useState("Cardio");
-    const [displayExercise, setDisplayExercise] = useState();
 
     const viewUser = () => {
         API.getUser()
@@ -28,20 +26,8 @@ function WorkoutForm() {
             });
     };
 
-    const viewExercises = () => {
-        API.showExercise(userState.user.id)
-            .then(exerciseData => {
-                setDisplayExercise(exerciseData.data);
-        });
-
-    }
-
     useEffect(() => {
         viewUser();
-        viewExercises();
-    }, displayExercise);
-
-    useEffect(() => {
         async function getExercise() {
             const response = await fetch("https://my-json-server.typicode.com/ptj92e/Weigh-To-Go/exercise");
             const body = await response.json();
@@ -246,7 +232,6 @@ function WorkoutForm() {
                     <button type="submit">Add Exercise!</button>
                 </div>
             </form>
-            <WorkoutTable exerciseArray={displayExercise}/>
         </div>
     )
 }

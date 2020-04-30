@@ -11,6 +11,7 @@ function Navbar() {
                 <div className="navbar-section">
                     <Link to="/workouts">Workouts</Link>
                     <Link to="/meals">Meals</Link>
+                    <Link to="/account">Account</Link>
                 </div>
             </nav>
         </header>
