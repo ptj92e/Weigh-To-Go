@@ -16,8 +16,8 @@ export default {
     logWorkout: function (userData) {
         return axios.post("/api/workout", userData)
     },
-    showExercise: function () {
-        return axios.get("/api/workout")
+    showExercise: function (id) {
+        return axios.get("/api/workout/" + id)
     },
     searchFood: function (query) {
         return axios.post("https://trackapi.nutritionix.com/v2/natural/nutrients", {

@@ -17,7 +17,7 @@ module.exports = {
             });
     },
     getUser: function (req, res) {
-        console.log(req.session.passport.user.id);
+        console.log(req.session);
         db.User.findOne({
             where: {
                 id: req.session.passport.user.id
