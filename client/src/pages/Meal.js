@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import MealDisplay from "../components/MealDisplay/MealDisplay";
 import Navbar from "../components/Navbar/Navbar";
 import API from "../utils/API";
 import "./css/Meal.css";
@@ -20,13 +19,6 @@ function Meals() {
         carbs: "",
         protein: ""
     });
-    const [mealDisplay, setMealDisplay] = useState([]);
-
-    useEffect(() => {
-        API.showMeal().then(mealData => {
-            setMealDisplay(mealData.data);
-        })
-    }, [resultState]);
 
     useEffect(() => {
         nutritionCalc();
@@ -97,9 +89,7 @@ function Meals() {
             fat: parseInt(mealState.fat),
             carbs: parseInt(mealState.carbs),
             protein: parseInt(mealState.protein)
-        }).then(res => {
-            setMealDisplay(res.data);
-        }).then(console.log(mealDisplay));
+        });
     }
 
     return (
@@ -144,7 +134,6 @@ function Meals() {
                     </ul>
                 </form>
                 <button onClick={saveMeal} type="submit">Save Meal</button>
-                <MealDisplay meal={mealDisplay} />
             </div>
         </div>
     )
