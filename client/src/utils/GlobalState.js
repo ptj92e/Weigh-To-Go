@@ -17,6 +17,7 @@ const reducer = (state, action) => {
         case CREATE_NEWUSER:
             return {
                 ...state,
+                id:action.newUser.id,
                 name: action.newUser.name,
                 email: action.newUser.email,
                 password: action.newUser.password
@@ -34,6 +35,7 @@ const reducer = (state, action) => {
         case SIGN_IN:
             return {
                 ...state,
+                id: action.currentUser.id,
                 name: action.currentUser.name,
                 email: action.currentUser.email,
                 age: action.currentUser.age,
