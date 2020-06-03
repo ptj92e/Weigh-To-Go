@@ -20,7 +20,7 @@ function NewUser() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        API.updateUser(state.email, {
+        API.updateUser(state.id, {
             age: ageRef.current.value,
             gender: genderRef.current.value,
             height: feetRef.current.value + inchesRef.current.value,
@@ -39,7 +39,7 @@ function NewUser() {
     };
 
     if (userInfoState.toHome === true) {
-        return <Redirect to="/home" />
+        return <Redirect to="" />
     } else {
         return (
             <div id="newUser">
