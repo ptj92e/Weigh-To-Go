@@ -17,3 +17,5 @@ This app uses a mySQL database in development as well as JAWS_DB for production 
 ## Node.js
 
 A Node.js server stands this app up to listen for calls out to the database to save and retrieve information from the database. 
+
+![image of webpage](client/public/images/WeighToGo.PNG)
